@@ -11,26 +11,26 @@ export const CONFIG = {
   corsWhitelistProd: (qa)
     ? [
       'http://localhost:4200',
-      'http://app-qa-completeyur-work.s3-website-us-east-1.amazonaws.com',
-      'https://d375fxipzkbwom.cloudfront.net',
-      'https://app-qa1212.completeyur.work'
+      'http://app-stuffsort-com.s3-website-us-west-2.amazonaws.com',
+      'https://dthvkc9lvowbf.cloudfront.net',
+      'https://app.stuffsort.com'
     ]
     : [
-      'http://app-completeyur-work.s3-website-us-east-1.amazonaws.com',
-      'https://d2b5jhs0c56ept.cloudfront.net',
-      'https://app.completeyur.work'
+      'http://app-stuffsort-com.s3-website-us-west-2.amazonaws.com',
+      'https://dthvkc9lvowbf.cloudfront.net',
+      'https://app.stuffsort.com'
     ],
   dbConnection: [
-    'mongodb://',
-    (development) ? 'actus-dev-server' : process.env.DB_USER.trim(),
+    'mongodb+srv://',
+    (development) ? 'alms-server' : process.env.DB_USER.trim(),
     ':',
-    (development) ? 'ISM47WovG21DQxRY' : process.env.DB_PASSWORD.trim(),
+    (development) ? 'QrxYjKELsRyR9bO5' : process.env.DB_PASSWORD.trim(),
     '@',
     // TODO: once have separate cluster for prod, use this as default, but replace with process.env.DB_HOST if process.env.NODE_ENV === 'production'
-    'actuscluster0-shard-00-00-sg1dr.mongodb.net:27017,actuscluster0-shard-00-01-sg1dr.mongodb.net:27017,actuscluster0-shard-00-02-sg1dr.mongodb.net:27017',
+    'cluster0-nfegh.mongodb.net',
     '/',
-    (development) ? 'actus-dev' : process.env.DB_NAME.trim(),
-    '?ssl=true&replicaSet=ActusCluster0-shard-0&authSource=admin'
+    (development) ? 'alms' : process.env.DB_NAME.trim(),
+    '?retryWrites=true&w=majority'
   ].join(''),
   secretKey: (development)
     ? 'YdXaX6iQnyqOWRJ6qWem3dL56mzdVa6YyptwTLfKwEIw1psFUGsWeYs8x9ZenZe'
@@ -52,4 +52,5 @@ export const CONFIG = {
     digit: /[0-9]/,
     symbol: /\W/ // non-word character
   },
+  defaultPageSize: 5,
 };

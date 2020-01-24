@@ -9,11 +9,15 @@ import { JwtStrategy } from './auth/jwt.strategy';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { ValidationPipe } from './common/pipes/validation.pipe';
+import { PaginationService } from './common/pagination/pagination.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserSchema } from './users/user.schema';
 import { UsersController } from './users/users.controller';
 import { UserService } from './users/user.service';
+import { CourseSchema } from './courses/course.schema';
+import { CoursesController } from './courses/courses.controller';
+import { CourseService } from './courses/course.service';
 
 
 @Module({
@@ -27,12 +31,14 @@ import { UserService } from './users/user.service';
     MongooseModule.forRoot(CONFIG.dbConnection),
     MongooseModule.forFeature([
       {name: 'User', schema: UserSchema},
+      {name: 'Course', schema: CourseSchema},
     ])
   ],
   controllers: [
     AppController,
-    UsersController,
     AuthController,
+    UsersController,
+    CoursesController,
   ],
   providers: [
     {
@@ -41,8 +47,10 @@ import { UserService } from './users/user.service';
     },
     JwtStrategy,
     AuthService,
+    PaginationService,
     AppService,
     UserService,
+    CourseService,
   ],
 })
 export class AppModule implements NestModule {
@@ -51,8 +59,9 @@ export class AppModule implements NestModule {
     consumer
       .apply(logger)
       .forRoutes(
-        UsersController,
         AuthController,
+        UsersController,
+        CoursesController,
       );
   }
 }
