@@ -27,7 +27,7 @@ export const CONFIG = {
     (development) ? 'QrxYjKELsRyR9bO5' : process.env.DB_PASSWORD.trim(),
     '@',
     // TODO: once have separate cluster for prod, use this as default, but replace with process.env.DB_HOST if process.env.NODE_ENV === 'production'
-    'cluster0-nfegh.mongodb.net',
+    'actuscluster0.sg1dr.mongodb.net',
     '/',
     (development) ? 'alms' : process.env.DB_NAME.trim(),
     '?retryWrites=true&w=majority'
